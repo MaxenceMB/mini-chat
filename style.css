@@ -1,0 +1,50 @@
+main {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    background-color: blueviolet;
+
+    border: 2px solid blueviolet;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    max-width: 100%;
+    height: 100%;
+    padding: 15px;
+    flex: 1 1 10%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#chatbox {
+    background-color: lavender;
+
+    border: 2px solid blueviolet;
+
+    max-width: 100%;
+    padding: 15px;
+    flex: 1;
+}
+
+#messagebox {
+    background-color: blueviolet;
+
+    border: 2px solid blueviolet;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    max-width: 100%;
+    height: 100%;
+    padding: 15px;
+    flex: 1 1 10%;
+
+    display: flex;
+    flex-direction: row;
+}

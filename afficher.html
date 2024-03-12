@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type = "text/javascript" src = "script.js"></script>
-</head>
-<body>
-    <button onclick = "addMessage('testPseudo', 'aaaaaaaaaaa')">Click</button>
-</body>
+<html lang = "fr">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+        <title>Mini-Chat</title>
+
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type = "text/javascript" src = "script.js"></script>
+
+        <link rel = "stylesheet" href = "style.css">
+        </head>
+
+        <body>
+        <main>
+            <div id = "header">
+                <label for = "pseudo">Mon pseudo</label>
+                <input type = "text" id = "txtPseudo" name = "pseudo" placeholder = "PseudoStylé">
+            </div>
+
+            <div id = "chatbox">a</div>
+
+            <div id = "messagebox">
+                <input type = "text" id = "txtMessage" name = "message" placeholder = "Mon message super stylé...">
+                <button id = "btnSend" onclick = "addMessage()">Envoyer</button>
+            </div>
+        </main>
+    </body>
 </html>

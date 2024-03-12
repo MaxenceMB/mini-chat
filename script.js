@@ -1,4 +1,7 @@
-function addMessage(pseudo, contenu) {
+function addMessage() {
+    pseudo  = document.getElementById("txtPseudo").value;
+    contenu = document.getElementById("txtMessage").value;
+
     $.ajax({
 		type: 'GET',
 		url: 'enregistrer.php',
