@@ -10,16 +10,17 @@
         <script type = "text/javascript" src = "script.js"></script>
 
         <link rel = "stylesheet" href = "style.css">
-        </head>
+    </head>
 
-        <body>
+    <body>
         <main>
             <div id = "header">
                 <label for = "pseudo">Mon pseudo</label>
                 <input type = "text" id = "txtPseudo" name = "pseudo" placeholder = "PseudoStylé">
             </div>
 
-            <div id = "chatbox">a</div>
+            <div id = "chatbox">
+            </div>
 
             <div id = "messagebox">
                 <input type = "text" id = "txtMessage" name = "message" placeholder = "Mon message super stylé...">
@@ -27,4 +28,15 @@
             </div>
         </main>
     </body>
+
+    <script>
+
+        const messageFetching = setInterval(getLast10Messages, 1000);
+    
+        function getLast10Messages() {
+            $('#chatbox').load('recuperer.php');
+        }
+    
+    </script>
+
 </html>

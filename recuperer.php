@@ -10,7 +10,10 @@ if ($stmt == false) {
 } else {
     $stmt->execute();
     while ($row = $stmt->fetch()) {
-        echo $row;
+        echo "<div>";
+        echo "<p> ".$row['contenu']."</p>";
+        echo "<p> from ".$row['userPseudo']." at ".$row['horaire']."</p>";
+        echo "</div>"; 
     }
 }
         
