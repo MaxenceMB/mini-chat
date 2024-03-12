@@ -1,27 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --black:        #1d1f2b;
+    --dark-gray:    #373b50;
+    --accent:       #6785ff;
+    --light-accent: #8ea4fa;
+  }
+  
+
 * {
     box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
 }
 
 body, html {
     height: 100%;
     padding: 0;
     margin: 0;
+
+    background-color: var(--black);
 }
 
 main {
     width: 80%;
     height: 100%;
     margin: auto;
-    padding: 10px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
+
+    color: white;
+}
+
+input, textarea {
+    border: none;
+    border-radius: 5px;
+    
+    padding: 5px;
+    height: 30px;
+
+    font-size: 15px;
+    outline: none;
+
+    resize: none;
 }
 
 #header {
-    background-color: blueviolet;
+    background-color: var(--dark-gray);
 
-    border: 2px solid blueviolet;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 
@@ -34,22 +61,26 @@ main {
     flex-direction: column;
 }
 
-#chatbox {
-    background-color: lavender;
+#txtPseudo {
+    width: 225px;
+}
 
-    border: 2px solid blueviolet;
+#chatbox {
+    background-color: var(--black);
+    border: 2px solid var(--dark-gray);
 
     max-width: 100%;
     padding: 15px;
     flex: 1 1 85%;
+
+    overflow: scroll;
 }
 
 #messagebox {
-    background-color: blueviolet;
-
-    border: 2px solid blueviolet;
+    background-color: var(--black);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border: 2px solid var(--dark-gray);
 
     max-width: 100%;
     height: 100%;
@@ -65,13 +96,40 @@ main {
     height: 100%;
     
     display: flex;
+    gap: 10px;
 }
 
 #txtMessage {
     flex: 1;
+
+    height: 50px;
+
+    background-color: var(--dark-gray);
+    color: white;
 }
 
 #btnSend {
     width: 75px;
+    height: 35px;
+
+    margin: auto;
+
+    background-color: var(--accent);
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    font-weight: 500;
+
+    transition: 0.05s;
+}
+
+#btnSend:hover {
+    background-color: white;
+    color: var(--accent);
+
+    cursor: pointer;
 }
 

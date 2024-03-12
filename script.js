@@ -8,9 +8,8 @@ function addMessage() {
 		data: {
 			pseudo: pseudo,
             phrase: contenu
-		},
-		success: function(data){
-			alert(data);
 		}
 	})
+
+    document.getElementById("txtMessage").value = "";
 }
