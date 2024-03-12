@@ -7,7 +7,6 @@
         <title>Mini-Chat</title>
 
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script type = "text/javascript" src = "script.js"></script>
 
         <link rel = "stylesheet" href = "style.css">
     </head>
@@ -33,7 +32,22 @@
     <script>
 
         const messageFetching = setInterval(getLast10Messages, 250);
-        const messageFetching = setInterval(getLast10Messages, 500);
+
+        function addMessage() {
+            pseudo  = document.getElementById("txtPseudo").value;
+            contenu = document.getElementById("txtMessage").value;
+
+            $.ajax({
+                type: 'GET',
+                url: 'enregistrer.php',
+                data: {
+                    pseudo: pseudo,
+                    phrase: contenu
+                }
+            })
+
+            document.getElementById("txtMessage").value = "";
+        }
     
         function getLast10Messages() {
             $('#chatbox').load('recuperer.php');
