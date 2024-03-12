@@ -32,6 +32,7 @@
 
     <script>
 
+        const messageFetching = setInterval(getLast10Messages, 250);
         const messageFetching = setInterval(getLast10Messages, 500);
     
         function getLast10Messages() {
