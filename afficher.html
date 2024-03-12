@@ -32,7 +32,7 @@
 
     <script>
 
-        const messageFetching = setInterval(getLast10Messages, 1000);
+        const messageFetching = setInterval(getLast10Messages, 250);
     
         function getLast10Messages() {
             $('#chatbox').load('recuperer.php');

@@ -3,7 +3,7 @@
 include "connexionBD.php";
 $pdo = createConnection();
 
-$stmt = $pdo->prepare("SELECT * FROM chatJS ORDER BY horaire LIMIT 10");
+$stmt = $pdo->prepare("SELECT * FROM (SELECT * FROM chatJS ORDER BY horaire DESC LIMIT 10) AS sub ORDER BY horaire ASC");
 
 if ($stmt == false) {
     echo "PREPARE ERROR";
