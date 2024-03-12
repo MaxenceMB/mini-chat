@@ -38,6 +38,12 @@
         function getLast10Messages() {
             $('#chatbox').load('recuperer.php');
         }
+
+        $("#messagebox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#btnSend").click();
+            }
+        });
     
     </script>
 
