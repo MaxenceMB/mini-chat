@@ -10,9 +10,9 @@
         <script type = "text/javascript" src = "script.js"></script>
 
         <link rel = "stylesheet" href = "style.css">
-        </head>
+    </head>
 
-        <body>
+    <body>
         <main>
             <div id = "header">
                 <label for = "pseudo">Mon pseudo</label>
@@ -29,4 +29,15 @@
             </div>
         </main>
     </body>
+
+    <script>
+
+        const messageFetching = setInterval(getLast10Messages, 1000);
+    
+        function getLast10Messages() {
+            $('#chatbox').load('recuperer.php');
+        }
+    
+    </script>
+
 </html>
