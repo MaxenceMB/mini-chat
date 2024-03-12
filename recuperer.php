@@ -10,12 +10,12 @@ if ($stmt == false) {
 } else {
     $stmt->execute();
     while ($row = $stmt->fetch()) {
-        echo "<div>";
-        echo "<p> ".$row['contenu']."</p>";
+        echo "<div class = 'msg'>";
+        echo "<p class = 'msg-text'> ".$row['contenu']."</p>";
         if ($row['horaire'] > $timestamp = strtotime('today midnight')) {
-            echo "<p> from ".$row['userPseudo']." at ".date('H:i A', $row['horaire'])."</p>";
+            echo "<p class = 'msg-info'> from ".$row['userPseudo']." at ".date('H:i A', $row['horaire'])."</p>";
         } else {
-            echo "<p> from ".$row['userPseudo']." at ".date('H:i A', $row['horaire'])." on ".date('m/d/Y', $row['horaire'])."</p>";
+            echo "<p class = 'msg-info'> from ".$row['userPseudo']." at ".date('H:i A', $row['horaire'])." on ".date('m/d/Y', $row['horaire'])."</p>";
         }
         echo "</div>"; 
     }
