@@ -20,12 +20,22 @@
                 <input type = "text" id = "txtPseudo" name = "pseudo" placeholder = "PseudoStylé">
             </div>
 
-            <div id = "chatbox"></div>
-
-            <div id = "messagebox">
-                <div id = "inputbox">
-                    <textarea id = "txtMessage" name = "message" placeholder = "Mon message super stylé..."></textarea>
-                    <button id = "btnSend" onclick = "addMessage()">Envoyer</button>
+            <div id = "chatbody">
+                <div id = "rooms">
+                    <div class = "room" onclick = "changeRoom(0)"><p class = "room-name">Main chat room</p></div>
+                    <div class = "room" onclick = "changeRoom(1)"><p class = "room-name">Chat room 1</p></div>
+                    <div class = "room" onclick = "changeRoom(2)"><p class = "room-name">Chat room 2</p></div>
+                    <div class = "room" onclick = "changeRoom(3)"><p class = "room-name">Chat room 3</p></div>
+                    <div class = "room" onclick = "changeRoom(4)"><p class = "room-name">Chat room 4</p></div>
+                </div>
+                <div id = "mainchat" data-current = "0">
+                    <div id = "chatbox"></div>
+                    <div id = "messagebox">
+                        <div id = "inputbox">
+                            <textarea id = "txtMessage" name = "message" placeholder = "Mon message super stylé..."></textarea>
+                            <button id = "btnSend" onclick = "addMessage()">Envoyer</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -33,28 +43,74 @@
 
     <script>
 
-        const messageFetching = setInterval(getLast10Messages, 250);
+        // Toutes les secondes on regarde s'il y a des nouveaux messages
+        const messageFetching = setInterval(getLast10Messages, 1000);
+    
+        // Récupère les 10 derniers messages de la BD pour les afficher
+        function getLast10Messages() {
 
+            // Requête AJAX qui récupère les 10 derniers messages dans un array JSON
+            $.ajax({
+                type: 'POST',
+                url: 'recuperer.php',
+                data: {
+                    room: $("#mainchat").attr("data-current")
+                },
+                success: function(data) {
+
+                    // On parse le JSON reçu, l'array est composé comme ceci: res[idMessage] = StringDivMessage
+                    let res = $.parseJSON(data);
+
+                    // Récupère toutes les clés (et donc tous les ids) des nouveaux messages
+                    let newMsg = Object.keys(res);
+                    let oldMsg = [];
+
+                    // Pour chaque message déjà affiché, on ajoute son id à un array qui va permettre de savoir quels sont les messages déjà présent
+                    $(".msg").each(function(index) {
+                        oldMsg.push($(".msg").eq(index).attr("data-msg"));
+                    })
+
+                    // Pour chaque nouveau message on regarde si son id est pas dans l'array précédant, s'il n'y est pas on append son string au chat
+                    newMsg.forEach((newId) => {
+                        if(!oldMsg.includes(newId)) {
+                            $("#chatbox").append(res[newId]);
+                        }
+                    })
+                }
+            })
+        }
+
+        function changeRoom(id) {
+            $("#chatbox").empty();
+            $("#mainchat").attr("data-current", id);
+        }
+
+
+        // Ajoute un message à la base de données
         function addMessage() {
+
+            // Récupère le pseudo et le message
             pseudo  = document.getElementById("txtPseudo").value;
             contenu = document.getElementById("txtMessage").value;
 
-            $.ajax({
-                type: 'GET',
-                url: 'enregistrer.php',
-                data: {
-                    pseudo: pseudo,
-                    phrase: contenu
-                }
-            })
+            // Requête ajax vers le fichier enregistrer.php
+            if(contenu.replace(/\s+/g, '') != "") {
+                $.ajax({
+                    type: 'GET',
+                    url: 'enregistrer.php',
+                    data: {
+                        pseudo: pseudo,
+                        phrase: contenu,
+                        room: $("#mainchat").attr("data-current")
+                    }
+                })
 
-            document.getElementById("txtMessage").value = "";
-        }
-    
-        function getLast10Messages() {
-            $('#chatbox').load('recuperer.php');
+                // Vide le champ textuel du message
+                document.getElementById("txtMessage").value = "";
+            }
         }
 
+        // Envoie un message lorsqu'on appuie sur Entrée
         $("#messagebox").keyup(function(event) {
             if (event.keyCode === 13) {
                 $("#btnSend").click();
